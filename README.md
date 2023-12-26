@@ -22,7 +22,7 @@ JavaScript.Animated welcomes:
     - `npm run server` (manual testing)
     - `git add; git commit -m "Build"; git push`
 
-## Todo
+## Todo / Work in progress
 
   - Add `concat()`
   - Add `fill()`
@@ -36,6 +36,9 @@ JavaScript.Animated welcomes:
   - Add `toReversed()`
   - Add `sort()`
   - [More?](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array#instance_methods)
+  - Add tests
+  - Fix TypeScript warnings and errors
+  - Gamify each method (e.g. let the user pick the correct output)
 
 ## Created using:
 
