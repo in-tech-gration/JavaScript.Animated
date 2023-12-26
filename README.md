@@ -1,6 +1,6 @@
 # JavaScript Visualized and Animated
 
-[Demo (work in progress)](https://in-tech-gration.github.io/JavaScript.Animated/dev/index.html)
+[Demo (work in progress)](https://in-tech-gration.github.io/JavaScript.Animated/)
 
 [![](./assets/array.methods.visualized.jpg)](https://in-tech-gration.github.io/JavaScript.Animated/dev/index.html)
 
