@@ -9,7 +9,7 @@
     - CSS: `/dev/style.css`
   - Build: 
     - `npm run build`
-    - Copy `dist/dev.js` and `dist/dev.map.js` to `dev/`
+    - `git add; git commit -m "Build"; git push`
 
 ## Created using mo.js
 
