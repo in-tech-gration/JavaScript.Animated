@@ -1,4 +1,7 @@
+// @ts-check
 // cSpell: ignore mojs inplace
+
+// @ts-ignore
 import mojs from 'src/mojs.babel.js';
 import MojsPlayer from '@mojs/player';
 
@@ -36,22 +39,49 @@ const methods = {
   map: { type: IMMUTABLE },
   filter: { type: IMMUTABLE },
   flat: { type: IMMUTABLE },
-  slice: { type: IMMUTABLE },
   concat: { type: IMMUTABLE },
   join: { type: IMMUTABLE }
 }
+const $   = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
 
+function filterArrays( demoContainers, filteredMethods ){
+
+  demoContainers.forEach( dc =>{
+
+    const isInSearch = filteredMethods.some( v => {
+      return dc.id.indexOf(v) > -1
+    });
+
+    if ( isInSearch ){
+      dc.classList.remove("hidden");
+    } else {
+      dc.classList.add("hidden");
+    }
+
+  })
+
+}
+function filterArraysByURLParams(demoContainers){
+
+  const params = new URL(document.location.href).searchParams;
+  const filteredMethods = params.get("methods");
+
+  if ( filteredMethods ){
+    searchInput.value = filteredMethods;
+    filterArrays(demoContainers, filteredMethods.split(",") );
+  }
+
+}
 function getPosFromProps(props) {
   return parseInt(props.x.split("px")[0]);
 }
-
 function uuid() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
     var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
     return v.toString(16);
   });
 }
-
 function initializeMethod({
   el,
   jsCode,
@@ -195,7 +225,7 @@ function initializeMethod({
     duration: 3000,
   })
 
-  function getBracket({ id, dir = "left", x = 0, y = 0, ...args }) {
+  function getBracket({ id = null, dir = "left", x = 0, y = 0, ...args }) {
 
     const bracketEl = addBracketElToParent({ dir }, parent);
 
@@ -203,7 +233,7 @@ function initializeMethod({
 
   }
 
-  function addBracketElToParent({ id, dir = "left" }) {
+  function addBracketElToParent({ id = null, dir = "left" }, parent) {
 
     const bracketEl = document.createElement("div");
     bracketEl.setAttribute("class", "char");
@@ -216,7 +246,7 @@ function initializeMethod({
 
   }
 
-  function getQuote({ id, dir = "left", x = 0, y = 0, ...args }) {
+  function getQuote({ id = null, dir = "left", x = 0, y = 0, ...args }) {
 
     const bracketEl = addQuoteElToParent({ dir }, parent);
 
@@ -224,7 +254,7 @@ function initializeMethod({
 
   }
 
-  function addQuoteElToParent({ id, dir = "left" }) {
+  function addQuoteElToParent({ id = null, dir = "left" }, parent) {
 
     const bracketEl = document.createElement("div");
     bracketEl.setAttribute("class", "char cursive");
@@ -237,7 +267,7 @@ function initializeMethod({
 
   }
 
-  function getMarble({ fill = ORANGE, x = 0, y = 0, opacity = 0, index = null, ...args } = {}) {
+  function getMarble({ id = null, fill = ORANGE, x = 0, y = 0, opacity = 0, index, ...args } = { index: 0 }) {
 
     return new mojs.Shape({
       ...marbleOptions,
@@ -250,7 +280,7 @@ function initializeMethod({
 
   }
 
-  function getMarblesFromInitialX({ count = 0, x = 0, fill, index = false, xOffset = 0, indexOffset = 0, listOfColors = [], bracketed = false, ...args }) {
+  function getMarblesFromInitialX({ count = 0, x = 0, fill = ORANGE, index = false, xOffset = 0, indexOffset = 0, listOfColors = [], bracketed = false, ...args }) {
 
     if (count === 0) {
       return [];
@@ -359,6 +389,11 @@ function initializeMethod({
   // << MODIFY
 
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return;
+  }
+
   demoContainer.innerHTML = "";
 
   const { init, getBracket, getMarble, getMarblesFromInitialX } = initializeMethod({
@@ -459,6 +494,11 @@ function initializeMethod({
   const methodSyntax = `.pop()`
   // MODIFY:
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return false;
+  }
+
   demoContainer.innerHTML = "";
 
   const { init, getBracket, getMarble, getMarblesFromInitialX } = initializeMethod({
@@ -466,7 +506,8 @@ function initializeMethod({
     el: demoContainer,
     jsCode: code,
     methodSyntax,
-    methodName
+    methodName,
+    options: {}
   });
 
   const arrayMethodsVisualizedTimeline = new mojs.Timeline({ repeat: 1 });
@@ -587,6 +628,11 @@ function initializeMethod({
   const methodSyntax = `.shift()`
   // MODIFY:
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return false;
+  }
+
   demoContainer.innerHTML = "";
 
   const { init, getBracket, getMarble, getMarblesFromInitialX } = initializeMethod({
@@ -594,7 +640,8 @@ function initializeMethod({
     el: demoContainer,
     jsCode: code,
     methodSyntax,
-    methodName
+    methodName,
+    options: {}
   });
 
   const arrayMethodsVisualizedTimeline = new mojs.Timeline({ repeat: 1 });
@@ -724,6 +771,11 @@ function initializeMethod({
   // << MODIFY
 
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return false;
+  }
+
   demoContainer.innerHTML = "";
 
   const { init, getBracket, getMarble, getMarblesFromInitialX } = initializeMethod({
@@ -732,7 +784,8 @@ function initializeMethod({
     jsCode: code,
     methodSyntax,
     methodName,
-    indexed: false
+    indexed: false,
+    options: {}
   });
 
   const arrayMethodsVisualizedTimeline = new mojs.Timeline({ repeat: 1 });
@@ -844,6 +897,11 @@ function initializeMethod({
   // << MODIFY
 
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return false;
+  }
+
   demoContainer.innerHTML = "";
   const fadeOutOpacityLevel = 0.3;
 
@@ -853,7 +911,8 @@ function initializeMethod({
     jsCode: code,
     methodSyntax,
     methodName,
-    active: false
+    active: false,
+    options: {}
   });
 
   // MODIFY:
@@ -1043,6 +1102,11 @@ function initializeMethod({
   // << MODIFY
 
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return false;
+  }
+
   demoContainer.innerHTML = "";
   const fadeOutOpacityLevel = 0.3;
 
@@ -1052,7 +1116,8 @@ function initializeMethod({
     jsCode: code,
     methodSyntax,
     methodName,
-    active: false
+    active: false,
+    options: {}
   });
 
   // MODIFY:
@@ -1261,6 +1326,11 @@ function initializeMethod({
   // << MODIFY
 
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return false;
+  }
+
   demoContainer.innerHTML = "";
   const fadeOutOpacityLevel = 0.3;
 
@@ -1270,7 +1340,8 @@ function initializeMethod({
     jsCode: code,
     methodSyntax,
     methodName,
-    active: false
+    active: false,
+    options: {}
   });
 
   // MODIFY:
@@ -1338,14 +1409,21 @@ function initializeMethod({
 
   const joinHyphen = document.querySelector(`#join-hyphen`);
 
+  if ( !joinHyphen ){
+    return false;
+  }
+
   const clone = joinHyphen.cloneNode(true);
 
   for (let i = 1; i < 4; i++) {
     const _clone = clone.cloneNode(true);
-    _clone.removeAttribute("id");
-    _clone.setAttribute("id", "join-hyphen-" + i);
-    _clone.setAttribute("class", "join-hyphens");
-    joinHyphen.appendChild(_clone);
+    // https://stackoverflow.com/a/67525151/4861760
+    if ( _clone instanceof HTMLElement ){
+      _clone.removeAttribute("id");
+      _clone.setAttribute("id", "join-hyphen-" + i);
+      _clone.setAttribute("class", "join-hyphens");
+      joinHyphen.appendChild(_clone);
+    }
   }
 
   const firstHyphen = new mojs.Html({
@@ -1499,6 +1577,11 @@ function initializeMethod({
   // << MODIFY
 
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return false;
+  }
+
   demoContainer.innerHTML = "";
   const fadeOutOpacityLevel = 0.3;
 
@@ -1508,7 +1591,8 @@ function initializeMethod({
     jsCode: code,
     methodSyntax,
     methodName,
-    active: false
+    active: false,
+    options: {}
   });
 
   // MODIFY:
@@ -1689,6 +1773,11 @@ function initializeMethod({
     // << MODIFY
 
     const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+    if ( !demoContainer ){
+      return false;
+    }
+
     demoContainer.innerHTML = "";
     const fadeOutOpacityLevel = 0.3;
 
@@ -1821,6 +1910,11 @@ function initializeMethod({
   // << MODIFY
 
   const demoContainer = document.querySelector(`section#array-${methodName}`);
+
+  if ( !demoContainer ){
+    return false;
+  }
+
   demoContainer.innerHTML = "";
   const fadeOutOpacityLevel = 0.3;
 
@@ -1830,7 +1924,8 @@ function initializeMethod({
     jsCode: code,
     methodSyntax,
     methodName,
-    active: false
+    active: false,
+    options: {}
   });
 
   // MODIFY:
@@ -1989,10 +2084,13 @@ function initializeMethod({
 }());
 
 // FILTER METHODS BASED ON TYPE:
-const controls            = document.querySelector(".controls");
-const playgroundContainer = document.querySelector(".playground-container");
-const search              = document.querySelector(".search");
-const demoContainers      = document.querySelectorAll(".demo-container");
+const controls            = $(".controls");
+const playgroundContainer = $(".playground-container");
+const search              = $(".search");
+const demoContainers      = $$(".demo-container");
+const searchInput         = $("input[type='search'");
+
+filterArraysByURLParams(demoContainers);
 
 search.addEventListener("input", e =>{
 
@@ -2005,17 +2103,20 @@ search.addEventListener("input", e =>{
     .filter(Boolean);
   }
 
-  demoContainers.forEach( dc =>{
+  if ( values && values.length > 0 ){
+    filterArrays(demoContainers, values);
+    const url = new URL(document.location.href);
+    url.searchParams.set("methods", values.join(","));
+    history.pushState({}, "", url);
+  }
 
-    const isInSearch = values.some( v => dc.id.indexOf(v) > -1 );
+  if ( values[0] === "" ){
 
-    if ( isInSearch ){
-      dc.classList.remove("hidden");
-    } else {
-      dc.classList.add("hidden");
-    }
+    const url = new URL(document.location.href);
+    url.searchParams.delete("methods");
+    history.pushState({}, "", url);
 
-  })
+  }
 
 });
 
