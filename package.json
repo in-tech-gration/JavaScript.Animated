@@ -9,7 +9,7 @@
   "scripts": {
     "lint": "eslint \"**/*.js\"",
     "dev": "webpack serve --config webpack.dev.js --env mode=development --stats=minimal",
-    "build": "webpack --config webpack.dev.js --progress --env mode=production",
+    "build": "webpack --config webpack.production.js --progress --env mode=production",
     "pretest": "webpack --config webpack.umd.js --env mode=test",
     "test": "karma start"
   },
@@ -55,6 +55,7 @@
     "coffee-loader": "^4.0.0",
     "coffeeify": "^3.0.1",
     "coffeescript": "^2.7.0",
+    "copy-webpack-plugin": "^11.0.0",
     "coveralls": "^3.1.1",
     "eslint": "^8.45.0",
     "eslint-webpack-plugin": "^4.0.1",
