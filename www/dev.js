@@ -11848,7 +11848,8 @@ function initializeMethod({
       <iframe src="https://in-tech-gration.github.io/JavaScript.Animated/?methods=${method}&embed=true" style="width: 800px; height: 200px;overflow: hidden;" scrolling="no">
     `
 
-    alert(embedded);
+    prompt("Copy to clipboard: Ctrl+C, Enter", embedded.trim());
+    // alert(embedded);
 
   });
 

@@ -357,6 +357,9 @@ body.embedded {
   margin: 0;
 }
 body.embedded h1,
+body.embedded .code-show-btn,
+body.embedded .more,
+body.embedded .js-playground-btn,
 body.embedded .playground-container .controls,
 body.embedded .support {
   display: none;
