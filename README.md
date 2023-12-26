@@ -2,6 +2,12 @@
 
 [Demo (work in progress)](https://in-tech-gration.github.io/JavaScript.Animated/)
 
+JavaScript.Animated welcomes:
+
+- [Issues, bug reports and suggestions](https://github.com/in-tech-gration/JavaScript.Animated/issues)
+- [Pull Requests](https://github.com/in-tech-gration/JavaScript.Animated/pulls)
+- [Discussion and ideas](https://github.com/in-tech-gration/JavaScript.Animated/discussions)
+
 [![](./assets/array.methods.visualized.jpg)](https://in-tech-gration.github.io/JavaScript.Animated/dev/index.html)
 
 [![](./assets/array.pizza.slice.jpg)](https://in-tech-gration.github.io/JavaScript.Animated/pizza-slice/index.html)
