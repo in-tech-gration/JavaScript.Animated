@@ -1,11 +1,7 @@
 {
-  "name": "@mojs/core",
-  "version": "2.6.0",
-  "description": "The motion graphics toolbelt for the web. Forked from: https://github.com/mojs/mojs",
-  "source": "src/mojs.babel.js",
-  "main": "dist/mo.umd.js",
-  "browser": "dist/mo.umd.js",
-  "unpkg": "dist/mo.umd.js",
+  "name": "javascript-animated",
+  "version": "0.1.0",
+  "description": "JavaScript Animated",
   "scripts": {
     "lint": "eslint \"**/*.js\"",
     "dev": "webpack serve --config webpack.dev.js --env mode=development --stats=minimal",
@@ -16,33 +12,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mojs/mojs.git"
+    "url": "git+https://github.com/in-tech-gration/JavaScript.Animated"
   },
   "files": [
     "dist"
   ],
   "keywords": [
-    "motion",
     "graphics",
-    "toolbelt",
+    "JavaScript",
     "effects",
     "animation"
   ],
   "author": {
-    "name": "Oleg Solomka",
-    "email": "legomushroom@gmail.com",
-    "url": "https://twitter.com/legomushroom",
-    "github": "@legomushroom"
-  },
-  "co-author": {
     "name": "Kostas Minaidis",
+    "email": "minaidisk@gmail.com",
+    "url": "https://twitter.com/kostas_mns",
     "github": "@kostasx"
   },
-  "license": "MIT",
+  "license": "GPLv3",
   "bugs": {
-    "url": "https://github.com/mojs/mojs/issues"
+    "url": "https://github.com/in-tech-gration/JavaScript.Animated/issues"
   },
-  "homepage": "https://mojs.github.io",
+  "homepage": "https://github.com/in-tech-gration/JavaScript.Animated",
   "engines": {
     "node": "^20",
     "npm": "^9"
