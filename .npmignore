@@ -1,0 +1,8 @@
+/coverage
+/spec
+/src
+.editorconfig
+karma.conf.js
+webpack.*
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
