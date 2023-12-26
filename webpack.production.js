@@ -41,8 +41,8 @@ module.exports = (argv) => merge(require('./webpack.common.js')(argv), {
           to: 'pizza-slice',
         },
         {
-          from: './dev/pizza-slice',
-          to: '',
+          from: './dev/assets',
+          to: 'assets',
         },
       ],
     }),

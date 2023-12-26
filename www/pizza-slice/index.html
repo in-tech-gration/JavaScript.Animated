@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Array.prototype.pizzaSlice</title>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="./style.css">
+  <script src="libs/confettis.js"></script>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+
+  <!-- partial:index.partial.html -->
+  <main>
+    <h1>Array.prototype.slice(🍕)</h1>
+    <section id="pizzas">
+      <div class="wrapper">
+        <div class='pizza' id="source"></div>
+        <div id="editor" class="editor">
+          <code>🍕.slice(<span id="code" contenteditable="true">0,0</span>);</code>
+          <button id="slice-btn">🔪</button>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class='pizza' id="target"></div>
+        <div id="editor" class="editor">
+          <!-- <code>&nbsp;</code> -->
+          <button id="start">Start the Challenge 🌶️</button>
+          <button id="reset">Reset</button>
+          <button id="negative">Negative Index</button>
+          <!-- <code>pizza.slice(1,7);</code> -->
+        </div>
+      </div>
+    </section>
+    <section id="instructions">
+      <strong>Instructions:</strong> Update the <code>slice</code> arguments to match the pizza slices on the right.
+        Read about <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank">Array.prototype.slice</a> at MDN.
+    </section>
+  </main>
+  <!-- partial -->
+  <script src="./exercises.js"></script>
+  <script  src="./script.js"></script>
+
+</body>
+</html>

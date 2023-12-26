@@ -11,7 +11,8 @@
     "dev": "webpack serve --config webpack.dev.js --env mode=development --stats=minimal",
     "build": "webpack --config webpack.production.js --progress --env mode=production",
     "pretest": "webpack --config webpack.umd.js --env mode=test",
-    "test": "karma start"
+    "test": "karma start",
+    "serve": "http-server www"
   },
   "repository": {
     "type": "git",
@@ -59,6 +60,7 @@
     "coveralls": "^3.1.1",
     "eslint": "^8.45.0",
     "eslint-webpack-plugin": "^4.0.1",
+    "http-server": "^14.1.1",
     "jasmine": "^5.0.2",
     "karma": "^6.4.2",
     "karma-babel-preprocessor": "^8.0.2",
