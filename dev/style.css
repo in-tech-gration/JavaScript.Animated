@@ -174,14 +174,27 @@ pre.code.active {
 
 .code-show,
 .demo-init-wrapper {
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
+  /* position: absolute; */
+  /* bottom: -2px; */
+  /* right: -2px; */
 }
 
+.code-show {
+  display: flex;
+}
+.code-show > * {
+  margin-left: -2px;
+}
 .demo-init-wrapper {
+  position: absolute;
+  bottom: -2px;
   left: -2px;
   display: flex;
+  right: -2px;
+}
+.code-show > *,
+.demo-init-wrapper > * {
+  flex-grow: 1;
 }
 
 .mdn-docs,
@@ -196,6 +209,7 @@ pre.code.active {
   cursor: pointer;
   transition: all 250ms ease;
   opacity: 0.2;
+  text-align: center;
 }
 
 button.demo-init {
@@ -335,4 +349,15 @@ button.demo-reset:hover {
   .github-corner .octo-arm {
     animation: octocat-wave 560ms ease-in-out
   }
+}
+
+/* Embedded */
+body.embedded {
+  padding: 0;
+  margin: 0;
+}
+body.embedded h1,
+body.embedded .playground-container .controls,
+body.embedded .support {
+  display: none;
 }

@@ -11684,6 +11684,15 @@ function filterArraysByURLParams(demoContainers){
   }
 
 }
+function makeEmbeddable(){
+  const params = new URL(document.location.href).searchParams;
+  const hasEmbed = params.get("embed");
+
+  if ( hasEmbed ){
+    document.body.classList.add("embedded");
+  }
+
+}
 function getPosFromProps(props) {
   return parseInt(props.x.split("px")[0]);
 }
@@ -11734,17 +11743,18 @@ function initializeMethod({
       <div class="demo-init-wrapper">
         <button class="demo-init">&#9658; Play</button>
         <button class="demo-reset">Reset</button>
-        <a class="mdn-docs" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/${methodName}" target="_blank">Docs<a/>
-      </div>
-      <div class="code-show" id="code-show-${methodId}">
-        <button class="code-show-btn">
-          <span class="arrow">${active ? upArrow : downArrow}</span>
-          <span class="text">${active ? "Hide Code" : "Show Code"}</span>
-        </button>
-        <button class="js-playground-btn">
-          <span class="js-arrow">${downArrow}</span>
-          <span class="text">Practice</span>
-        </button>
+        <a class="mdn-docs" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/${methodName}" target="_blank">Docs</a>
+        <div class="code-show" id="code-show-${methodId}">
+          <button class="code-show-btn">
+            <span class="arrow">${active ? upArrow : downArrow}</span>
+            <span class="text">${active ? "Hide Code" : "Show Code"}</span>
+          </button>
+          <button class="js-playground-btn">
+            <span class="js-arrow">${downArrow}</span>
+            <span class="text">Practice</span>
+          </button>
+          <button class="js-embed">Embed</button>
+        </div>
       </div>
       </main>
       <pre class="code ${active ? "active" : ""}"></pre>
@@ -11826,6 +11836,20 @@ function initializeMethod({
     }
     arrow.innerHTML = upArrow;
     return preEl.classList.add("active");
+  });
+
+  el.querySelector(`#code-show-${methodId} .js-embed`).addEventListener("click", () => {
+
+    const preEl = el.querySelector(".js-playground");
+    const arrow = el.querySelector(".js-arrow");
+    const method = el.id.replace("array-","");
+
+    const embedded = `
+      <iframe src="https://in-tech-gration.github.io/JavaScript.Animated/?methods=${method}&embed=true" style="width: 800px; height: 200px;overflow: hidden;" scrolling="no">
+    `
+
+    alert(embedded);
+
   });
 
   const rightArrow = new src_mojs_babel_js__WEBPACK_IMPORTED_MODULE_0__["default"].Html({
@@ -13702,6 +13726,7 @@ const demoContainers      = $$(".demo-container");
 const searchInput         = $("input[type='search'");
 
 filterArraysByURLParams(demoContainers);
+makeEmbeddable();
 
 search.addEventListener("input", e =>{
 

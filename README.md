@@ -9,6 +9,7 @@
     - CSS: `/dev/style.css`
   - Build: 
     - `npm run build`
+    - `npm run server` (manual testing)
     - `git add; git commit -m "Build"; git push`
 
 ## Created using mo.js
