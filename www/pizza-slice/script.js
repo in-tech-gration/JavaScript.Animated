@@ -19,6 +19,7 @@ let currentChallenge  = 0;
 let currentExercise   = null;
 let gameStarted       = false;
 let debugMode         = false;
+let bgPlay            = null;
 const exercises = originalExercises.slice();
 const exercisesLen = originalExercises.length;
 function createSlice({ i, neg, missing }){
@@ -57,13 +58,22 @@ function renderPizza({ el, from = 1, to = 14, neg = false }){
     el.appendChild(slice);
   }
 }
-function play( audioFile, loop = false ){
+function play(audioFile, loop = false) {
+  const muted = mute.dataset.Mute === "true";
+  if (muted && !loop) return;
   const audio = new Audio("assets/" + audioFile);
   audio.loop = loop;
   !debugMode && audio.play();
+  muted && audio.pause();
   return audio;
 }
-
+function toggleMute() {
+  mute.textContent = mute.dataset.Mute === "false" ? "🔊" : "🔇";
+  mute.dataset.Mute = mute.dataset.Mute === "false" ? "true" : "false";
+  try {
+    mute.dataset.Mute === "false" ? bgPlay.play() : bgPlay.pause();
+  } catch (e) {}
+}
 function pizzaCheck(){
   if ( !gameStarted ){
     return false;
@@ -144,7 +154,7 @@ function startGame(e){
   if ( gameStarted ){
     return false;
   }
-  play("mixkit-yo-chucky-861.mp3", true);
+  bgPlay = play("mixkit-yo-chucky-861.mp3", true);
   pizzaEl.classList.add("active");
   gameStarted = true;
   // DRY:
@@ -227,3 +237,4 @@ negIdx.addEventListener("click", e=>{
   }
 });
 // editArea.focus();
+mute.addEventListener("click", toggleMute);
