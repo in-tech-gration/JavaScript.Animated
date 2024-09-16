@@ -70,9 +70,7 @@ function play(audioFile, loop = false) {
 function toggleMute() {
   mute.textContent = mute.dataset.Mute === "false" ? "🔊" : "🔇";
   mute.dataset.Mute = mute.dataset.Mute === "false" ? "true" : "false";
-  try {
-    mute.dataset.Mute === "false" ? bgPlay.play() : bgPlay.pause();
-  } catch (e) {}
+  mute.dataset.Mute === "false" ? bgPlay.play() : bgPlay.pause();
 }
 function pizzaCheck(){
   if ( !gameStarted ){
