@@ -46,4 +46,7 @@ JavaScript.Animated welcomes:
   - Pizza slices by [Adam Kuhn](https://codepen.io/cobra_winfrey/pen/ygojOG)
   - Sound effects and music by [Mixkit](https://mixkit.co/)
 
+## Contributors
+
+  - [Alex @alkozp](https://github.com/alkozp)
 
