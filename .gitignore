@@ -5,3 +5,5 @@
 .vscode
 .env
 .eslintcache
+__archived_git_repo__/
+.gitignore
